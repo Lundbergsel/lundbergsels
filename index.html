@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lundbergsel i Kivik AB - Elektriker i Kivik</title>
+    <style>
+        /* Enhanced text visibility for first service card */
+        .service-card.bg-fade h3 {
+            color: #fff;
+            text-shadow: 0 2px 8px #2c5aa0, 0 1px 0 #1a1a1a;
+        }
+        .service-card.bg-fade .service-icon {
+            color: #2c5aa0;
+            text-shadow: 0 2px 8px #fff;
+        }
+        .service-card.bg-fade p {
+            color: #2c5aa0;
+            font-weight: bold;
+            text-shadow: 0 2px 8px #fff;
+        }
+            /* Fade-in effect for all service cards text on hover */
+            .service-card.bg-fade .service-icon,
+            .service-card.bg-fade p {
+                opacity: 0;
+                transition: opacity 0.5s;
+            }
+            .service-card.bg-fade:hover .service-icon,
+            .service-card.bg-fade:hover p {
+                opacity: 1;
+            }
+            /* Enhanced text visibility for all service cards */
+            .service-card.bg-fade h3 {
+                color: #fff;
+                text-shadow: 0 2px 8px #2c5aa0, 0 1px 0 #1a1a1a;
+            }
+            .service-card.bg-fade .service-icon {
+                color: #2c5aa0;
+                text-shadow: 0 2px 8px #fff;
+            }
+            .service-card.bg-fade p {
+                color: #2c5aa0;
+                font-weight: bold;
+                text-shadow: 0 2px 8px #fff;
+            }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c5aa0 100%);
+            color: white;
+            padding: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: sparkle 20s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-100px) translateY(-100px); }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: '⚡';
+            font-size: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #dc3545;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c5aa0 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #dc3545;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(220, 53, 69, 0.3);
+            background: #c82333;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c5aa0;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #dc3545;
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #dc3545, #2c5aa0);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2c5aa0;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Google Reviews Section */
+        .reviews {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .google-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .google-logo {
+            font-size: 2rem;
+            color: #4285f4;
+            font-weight: bold;
+        }
+
+        .rating-score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        .stars {
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .star {
+            font-size: 1.5rem;
+            color: #ffd700;
+        }
+
+        .rating-text {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2c5aa0, #dc3545);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .reviewer-info h4 {
+            color: #1a1a1a;
+            margin-bottom: 0.2rem;
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .review-text {
+            color: #555;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .review-date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5aa0;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-features {
+            list-style: none;
+        }
+
+        .about-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .about-features li::before {
+            content: '✓';
+            color: #dc3545;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .about-image {
+            text-align: center;
+            font-size: 8rem;
+            color: #2c5aa0;
+            opacity: 0.7;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 0;
+            background: #2c5aa0;
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item::before {
+            content: attr(data-icon);
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: #dc3545;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: white;
+            transform: scale(1.02);
+        }
+
+        .submit-btn {
+            background: #dc3545;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Lundbergsel i Kivik AB</div>
+            <ul class="nav-links">
+                <li><a href="#home">Hem</a></li>
+                <li><a href="#services">Tjänster</a></li>
+                <li><a href="#about">Om oss</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Professionella Elektriker i Kivik</h1>
+                <p>Vi erbjuder säkra och pålitliga ellösningar för hem och företag</p>
+                <a href="#contact" class="cta-button">Kontakta oss idag</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Våra Tjänster</h2>
+            <div class="services-grid">
+                <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+                    <div class="service-icon">🏠</div>
+                    <h3>Hushållsel</h3>
+                    <p>Installation och reparation av elektriska system i hem. Vi hjälper dig med allt från eluttag till belysning och säkringsbyten.</p>
+                </div>
+                <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+                    <div class="service-icon">🏢</div>
+                    <h3>Företagsel</h3>
+                    <p>Professionella ellösningar för företag och kommersiella fastigheter. Vi säkerställer att ditt företag får pålitlig elförsörjning.</p>
+                </div>
+                <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+                    <div class="service-icon">⚡</div>
+                    <h3>Akutservice</h3>
+                    <p>Snabb hjälp vid elavbrott och andra akuta elektriska problem. Vi finns tillgängliga dygnet runt för nödsituationer.</p>
+                </div>
+                <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+                    <div class="service-icon">🔧</div>
+                    <h3>Underhåll</h3>
+                    <p>Regelbunden kontroll och underhåll av dina elektriska system för att förebygga problem och säkerställa säkerheten.</p>
+                </div>
+                <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+                    <div class="service-icon">💡</div>
+                    <h3>Belysning</h3>
+                    <p>Design och installation av belysningslösningar som skapar rätt atmosfär och sparar energi i ditt hem eller företag.</p>
+                </div>
+                <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+                    <div class="service-icon">🔌</div>
+                    <h3>Installation</h3>
+                    <p>Professionell installation av nya elektriska system, uttag, och apparater enligt gällande säkerhetsföreskrifter.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <div class="reviews-header">
+                <div class="google-rating">
+                    <span class="google-logo">Google</span>
+                    <span class="rating-score">5.0</span>
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+                <p class="rating-text">Baserat på 2 recensioner från nöjda kunder</p>
+            </div>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">K</div>
+                        <div class="reviewer-info">
+                            <h4>Kund 1</h4>
+                            <div class="review-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Vänligt bemötande och stor kompetens!"</p>
+                    <p class="review-date">Google-recension</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">K</div>
+                        <div class="reviewer-info">
+                            <h4>Kund 2</h4>
+                            <div class="review-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Mycket nöjd med servicen från Lundbergsel."</p>
+                    <p class="review-date">Google-recension</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Om Lundbergsel i Kivik AB</h2>
+                    <p>Med många års erfarenhet inom elbranschen är vi ditt naturliga val för alla elektriska behov i Kivik och omnejd. Vi är ett familjeföretag som värdesätter kvalitet, säkerhet och kundnöjdhet.</p>
+                    <p>Vårt team av certifierade elektriker arbetar alltid enligt de senaste säkerhetsföreskrifterna och använder högkvalitativa material för att garantera hållbara lösningar.</p>
+                    <ul class="about-features">
+                        <li>Auktoriserade elektriker</li>
+                        <li>Snabb och pålitlig service</li>
+                        <li>Konkurrerande priser</li>
+                        <li>Fullständig försäkring</li>
+                        <li>Garanti på allt arbete</li>
+                    </ul>
+                </div>
+                <div class="about-image">⚡🔧</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Kontakta Oss</h2>
+                    <div class="contact-item" data-icon="📍">
+                        Kivik, Skåne län
+                    </div>
+                    <div class="contact-item" data-icon="📞">
+                        Tel: 046-XXX XX XX
+                    </div>
+                    <div class="contact-item" data-icon="✉️">
+                        Lundbergsel98@gmail.com
+                    </div>
+                    <div class="contact-item" data-icon="🕒">
+                        Mån-Fre: 07:00-17:00<br>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Skicka meddelande</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Namn</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-post</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Meddelande</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Skicka meddelande</button>
+                    </form>
+                    <div id="emailjs-message" style="margin-top:1rem;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lundbergsel i Kivik AB. Alla rättigheter förbehållna.</p>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // Load and display the uploaded logo image
+        async function loadLogoImage() {
+            try {
+                const imageData = await window.fs.readFile('image-1735130633085.jpeg');
+                const blob = new Blob([imageData], { type: 'image/jpeg' });
+                const imageUrl = URL.createObjectURL(blob);
+                const heroElement = document.querySelector('.hero');
+                heroElement.style.backgroundImage = `url('${imageUrl}')`;
+                heroElement.style.backgroundSize = 'cover';
+                heroElement.style.backgroundPosition = 'center';
+                heroElement.style.backgroundRepeat = 'no-repeat';
+            } catch (error) {
+                console.log('Could not load logo image:', error);
+            }
+        }
+        loadLogoImage();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // EmailJS integration
+        (function(){
+            emailjs.init({ publicKey: "d49f3McyQNq_D_tng" });
+        })();
+
+        const contactForm = document.querySelector('.contact-form form');
+        const messageDiv = document.getElementById('emailjs-message');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                emailjs.sendForm('service_kk6bj13', 'template_6teptan', this)
+                    .then(function() {
+                        messageDiv.textContent = 'Tack för ditt meddelande! Vi återkommer snarast.';
+                        messageDiv.style.color = '#FFD600'; // Screaming yellow
+                        contactForm.reset();
+                    }, function(error) {
+                        messageDiv.textContent = 'Ett fel uppstod. Försök igen senare.';
+                        messageDiv.style.color = 'red';
+                    });
+            });
+        }
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.service-card, .about-text, .contact-info').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
