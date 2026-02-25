@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation - Lundbergsel i Kivik AB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c5aa0 100%);
+            color: white;
+            padding: 1rem 0;
+            position: relative;
+            overflow: visible;
+            z-index: 1001;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: '⚡';
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #dc3545;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .dropdown-menu {
+            display: flex;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c5aa0 100%);
+            list-style: none;
+            flex-direction: column;
+            gap: 0;
+            border-radius: 0 0 8px 8px;
+            min-width: 220px;
+            margin-top: 0;
+            padding: 0.5rem 0;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
+
+        .dropdown-menu li a:hover {
+            background: rgba(220, 53, 69, 0.2);
+            padding-left: 2rem;
+        }
+
+        .dropdown-menu li a::after {
+            display: none;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #17a2b8 0%, #20c997 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-section {
+            padding: 3rem 0;
+            background: white;
+        }
+
+        .content-section h2 {
+            color: #2c5aa0;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .features li {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .features li::before {
+            content: '✓';
+            color: #dc3545;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #dc3545;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #c82333;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(220, 53, 69, 0.3);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Lundbergsel i Kivik AB</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Hem</a></li>
+                <li class="dropdown">
+                    <a href="index.html#services">Tjänster</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="akutservice.html">Akut Service</a></li>
+                        <li><a href="belysning.html">Belysning</a></li>
+                        <li><a href="installation.html">Installation</a></li>
+                        <li><a href="underhall.html">Underhåll</a></li>
+                        <li><a href="foretagsel.html">Företags El</a></li>
+                        <li><a href="hushallsel.html">Hushålls El</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#about">Om oss</a></li>
+                <li><a href="index.html#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>🔌 Elinstallation</h1>
+            <p>Ny eller uppdaterad elinstallation i bostäder och företag</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2>Professionell Elinstallation</h2>
+            <p>Vi utför fullständiga elinstallationer både i nya byggnader och vid renoveringsprojekt. Vår erfarenhet och kunskap säkerställer att din elinstallation är säker, effektiv och uppfyller alla moderna krav.</p>
+            
+            <h3 style="color: #2c5aa0; margin-top: 2rem; margin-bottom: 1rem;">Installationstjänster:</h3>
+            <ul class="features">
+                <li>Nya elinstallationer i bostäder</li>
+                <li>Uppdatering av gamla elinstallationer</li>
+                <li>Installation av elskåp och säkerhetsutrustning</li>
+                <li>Uttag och strömfördelning</li>
+                <li>Jordfelsbrytare och överspänningsskydd</li>
+                <li>Renoveringsprojekt och ombyggnationer</li>
+            </ul>
+
+            <p style="margin-top: 2rem;">Med moderna installationsmetoder och högkvalitativt material garanterar vi en säker och långvarig lösning för ditt hem eller företag. Vi följer alltid gällande elsäkerhetsstandarder och reglverk.</p>
+            
+            <a href="index.html#contact" class="cta-button">Fråga om installation</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Lundbergsel i Kivik AB. Alla rättigheter förbehållna.</p>
+        </div>
+    </footer>
+</body>
+</html>
