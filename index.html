@@ -68,7 +68,8 @@
             color: white;
             padding: 1rem 0;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
+            z-index: 1001;
         }
 
         header::before {
@@ -145,6 +146,125 @@
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        .nav-instagram {
+            padding: 0.5rem !important;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-instagram::after {
+            display: none;
+        }
+
+        .nav-instagram img {
+            width: 40px;
+            height: 24px;
+            object-fit: contain;
+            transition: filter 0.3s ease;
+        }
+
+        .nav-instagram:hover {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            transform: translateY(-2px);
+        }
+
+        .nav-instagram:hover img {
+            filter: brightness(0) invert(1);
+        }
+
+        /* Hamburger Menu Button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            z-index: 1003;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .dropdown-menu {
+            display: flex;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c5aa0 100%);
+            list-style: none;
+            flex-direction: column;
+            gap: 0;
+            border-radius: 0 0 8px 8px;
+            min-width: 220px;
+            margin-top: 0;
+            padding: 0.5rem 0;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
+
+        .dropdown-menu li a:hover {
+            background: rgba(220, 53, 69, 0.2);
+            padding-left: 2rem;
+        }
+
+        .dropdown-menu li a::after {
+            display: none;
         }
 
         /* Hero Section */
@@ -273,6 +393,18 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .service-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            cursor: pointer;
         }
 
         .service-card::before {
@@ -281,14 +413,30 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #dc3545, #2c5aa0);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+            border-radius: 15px;
+            backdrop-filter: blur(0px);
         }
 
-        .service-card:hover::before {
-            transform: scaleX(1);
+        .service-link:hover .service-card::before {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+        }
+
+        .service-link:hover .service-card h3 {
+            color: white;
+        }
+
+        .service-link:hover .service-card p {
+            color: white;
+        }
+
+        .service-link:hover .service-card .service-icon {
+            color: #ffc107;
         }
 
         .service-card:hover {
@@ -300,17 +448,23 @@
             font-size: 3rem;
             margin-bottom: 1rem;
             color: #2c5aa0;
+            position: relative;
+            z-index: 2;
         }
 
         .service-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: #333;
+            position: relative;
+            z-index: 2;
         }
 
         .service-card p {
             color: #666;
             line-height: 1.6;
+            position: relative;
+            z-index: 2;
         }
 
         /* Google Reviews Section */
@@ -560,13 +714,118 @@
             background: #1a1a1a;
             color: white;
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a img {
+            width: 45px;
+            height: 25px;
+            object-fit: contain;
+            transition: filter 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(220, 53, 69, 0.3);
+        }
+
+        .social-links a:hover img {
+            filter: brightness(0) invert(1);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #999;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            nav {
+                justify-content: space-between;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 50px;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #1a1a1a 0%, #2c5aa0 100%);
+                flex-direction: column;
+                gap: 0;
+                padding: 2rem 1rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                z-index: 1002;
+            }
+
+            .nav-links.active {
+                max-height: 500px;
+            }
+
+            .nav-links li {
+                padding: 1rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .dropdown-menu {
+                position: static;
+                background: rgba(255, 255, 255, 0.1);
+                opacity: 0;
+                visibility: hidden;
+                max-height: 0;
+                overflow: hidden;
+                transition: all 0.3s ease;
+                box-shadow: none;
+                margin-top: 0.5rem;
+            }
+
+            .dropdown.active .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                max-height: 500px;
+            }
+
+            .nav-instagram img {
+                width: 24px;
+                height: 16px;
             }
 
             .hero h1 {
@@ -593,11 +852,27 @@
     <header>
         <nav class="container">
             <div class="logo">Lundbergsel i Kivik AB</div>
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="#home">Hem</a></li>
-                <li><a href="#services">Tjänster</a></li>
+                <li class="dropdown">
+                    <a href="#services">Tjänster</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="akutservice.html">Akut Service</a></li>
+                        <li><a href="belysning.html">Belysning</a></li>
+                        <li><a href="installation.html">Installation</a></li>
+                        <li><a href="underhall.html">Underhåll</a></li>
+                        <li><a href="foretagsel.html">Företags El</a></li>
+                        <li><a href="hushallsel.html">Hushålls El</a></li>
+                    </ul>
+                </li>
                 <li><a href="#about">Om oss</a></li>
                 <li><a href="#contact">Kontakt</a></li>
+                <li><a href="https://www.instagram.com/lundbergselkivikab/" target="_blank" rel="noopener noreferrer" class="nav-instagram" title="Besök oss på Instagram"><img src="https://1000logos.net/wp-content/uploads/2017/02/Instagram-Logo.png" alt="Instagram"></a></li>
             </ul>
         </nav>
     </header>
@@ -616,36 +891,48 @@
         <div class="container">
             <h2 class="section-title">Våra Tjänster</h2>
             <div class="services-grid">
-                <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-                    <div class="service-icon">🏠</div>
-                    <h3>Hushållsel</h3>
-                    <p>Installation och reparation av elektriska system i hem. Vi hjälper dig med allt från eluttag till belysning och säkringsbyten.</p>
-                </div>
-                <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-                    <div class="service-icon">🏢</div>
-                    <h3>Företagsel</h3>
-                    <p>Professionella ellösningar för företag och kommersiella fastigheter. Vi säkerställer att ditt företag får pålitlig elförsörjning.</p>
-                </div>
-                <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-                    <div class="service-icon">⚡</div>
-                    <h3>Akutservice</h3>
-                    <p>Snabb hjälp vid elavbrott och andra akuta elektriska problem. Vi finns tillgängliga dygnet runt för nödsituationer.</p>
-                </div>
-                <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-                    <div class="service-icon">🔧</div>
-                    <h3>Underhåll</h3>
-                    <p>Regelbunden kontroll och underhåll av dina elektriska system för att förebygga problem och säkerställa säkerheten.</p>
-                </div>
-                <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-                    <div class="service-icon">💡</div>
-                    <h3>Belysning</h3>
-                    <p>Design och installation av belysningslösningar som skapar rätt atmosfär och sparar energi i ditt hem eller företag.</p>
-                </div>
-                <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-                    <div class="service-icon">🔌</div>
-                    <h3>Installation</h3>
-                    <p>Professionell installation av nya elektriska system, uttag, och apparater enligt gällande säkerhetsföreskrifter.</p>
-                </div>
+                <a href="hushallsel.html" class="service-link">
+                    <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+                        <div class="service-icon">🏠</div>
+                        <h3>Hushållsel</h3>
+                        <p>Installation och reparation av elektriska system i hem. Vi hjälper dig med allt från eluttag till belysning och säkringsbyten.</p>
+                    </div>
+                </a>
+                <a href="foretagsel.html" class="service-link">
+                    <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+                        <div class="service-icon">🏢</div>
+                        <h3>Företagsel</h3>
+                        <p>Professionella ellösningar för företag och kommersiella fastigheter. Vi säkerställer att ditt företag får pålitlig elförsörjning.</p>
+                    </div>
+                </a>
+                <a href="akutservice.html" class="service-link">
+                    <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+                        <div class="service-icon">⚡</div>
+                        <h3>Akutservice</h3>
+                        <p>Snabb hjälp vid elavbrott och andra akuta elektriska problem. Vi finns tillgängliga dygnet runt för nödsituationer.</p>
+                    </div>
+                </a>
+                <a href="underhall.html" class="service-link">
+                    <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+                        <div class="service-icon">🔧</div>
+                        <h3>Underhåll</h3>
+                        <p>Regelbunden kontroll och underhåll av dina elektriska system för att förebygga problem och säkerställa säkerheten.</p>
+                    </div>
+                </a>
+                <a href="belysning.html" class="service-link">
+                    <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+                        <div class="service-icon">💡</div>
+                        <h3>Belysning</h3>
+                        <p>Design och installation av belysningslösningar som skapar rätt atmosfär och sparar energi i ditt hem eller företag.</p>
+                    </div>
+                </a>
+                <a href="installation.html" class="service-link">
+                    <div class="service-card bg-fade" style="background-image: url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
+                        <div class="service-icon">🔌</div>
+                        <h3>Installation</h3>
+                        <p>Professionell installation av nya elektriska system, uttag, och apparater enligt gällande säkerhetsföreskrifter.</p>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -774,7 +1061,14 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Lundbergsel i Kivik AB. Alla rättigheter förbehållna.</p>
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="https://www.instagram.com/lundbergselkivikab/" target="_blank" rel="noopener noreferrer" class="instagram" title="Besök oss på Instagram">
+                        <img src="https://1000logos.net/wp-content/uploads/2017/02/Instagram-Logo.png" alt="Instagram">
+                    </a>
+                </div>
+                <p>&copy; 2025 Lundbergsel i Kivik AB. Alla rättigheter förbehållna.</p>
+            </div>
         </div>
     </footer>
 
@@ -848,6 +1142,35 @@
             el.style.transition = 'all 0.6s ease-out';
             observer.observe(el);
         });
+
+        // Mobile hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Handle dropdown menus in mobile
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+        }
     </script>
 </body>
 </html>
